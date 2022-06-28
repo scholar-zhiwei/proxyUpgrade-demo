@@ -1,43 +1,13 @@
 # Advanced Sample Hardhat Project
 
-This project demonstrates an advanced Hardhat use case, integrating other tools commonly used alongside Hardhat in the ecosystem.
-
-The project comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts. It also comes with a variety of other tools, preconfigured to work with the project code.
-
-Try running some of the following tasks:
-
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-npx hardhat help
-REPORT_GAS=true npx hardhat test
-npx hardhat coverage
-npx hardhat run scripts/deploy.js
-node scripts/deploy.js
-npx eslint '**/*.js'
-npx eslint '**/*.js' --fix
-npx prettier '**/*.{json,sol,md}' --check
-npx prettier '**/*.{json,sol,md}' --write
-npx solhint 'contracts/**/*.sol'
-npx solhint 'contracts/**/*.sol' --fix
-```
-
-# Etherscan verification
-
-To try out Etherscan verification, you first need to deploy a contract to an Ethereum network that's supported by Etherscan, such as Ropsten.
-
-In this project, copy the .env.example file to a file named .env, and then edit it to fill in the details. Enter your Etherscan API key, your Ropsten node URL (eg from Alchemy), and the private key of the account which will send the deployment transaction. With a valid .env file in place, first deploy your contract:
-
-```shell
-hardhat run --network ropsten scripts/deploy.js
-```
-
-Then, copy the deployment address and paste it in to replace `DEPLOYED_CONTRACT_ADDRESS` in this command:
-
-```shell
-npx hardhat verify --network ropsten DEPLOYED_CONTRACT_ADDRESS "Hello, Hardhat!"
-```
 # proxyUpgrade-demo
+proxyUpgrade指南：https://learnblockchain.cn/article/4282
+多重钱包的签名情况下合约升级指南：https://learnblockchain.cn/article/3103
+
+说明：一旦我们将升级控制权（ProxyAdmin 的所有权）转移到我们的多重签名中，我们就不能再简单地升级我们的合约了。相反，我们需要首先提出一个升级，多重签名的所有者可以审查，一旦审查批准并执行升级合约的提案。
+
+我们将升级控制权（ProxyAdmin 的所有权）转移到我们的多重签名中，我们可以通过Gnosis Safe的apps模块的OpenZeppelin升级合约（需要代理合约，新的实现合约）详细可以参考https://learnblockchain.cn/article/3103的升级合约模块，或者进入https://docs.openzeppelin.com/defender/guide-upgrades创建 Defender Team API 密钥
+，然后根据里面的教程进行合约的升级
+多重签名下的合约升级示例：
+image.png
+image.png
